@@ -12,3 +12,7 @@ body{
 	border: solid 3px orange;
 	border-radius: 5px;
 }
+
+h1, p{
+	color: white;
+}

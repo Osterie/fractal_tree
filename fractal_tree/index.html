@@ -8,8 +8,39 @@
     <link rel=stylesheet href=style.css>
 </head>
 <body>
-    <button id = 'button'> Click me </button>
-    <canvas id="canvas" width="1000px" height="1000px"> </canvas>
+    
+        <h1> Write expressions for Hue</h1>
+        <textarea id='hue_expression' placeholder="Hue" cols="40" rows="5">L*10</textarea>
+    
+    <div id ='length_container'> 
+        <h1> Change the starting length of the tree trunk, expression for change in size for next branch, and smallest branch size </h1>
+        <input id='length' type='number' placeholder="starting length" value='100'>
+        <input id='length_change_expression' type='text' placeholder="Expression for length change" value='L*0.8'>
+        <input id='smallest_length' type="number" placeholder="Smallest branch size" value="10" min="1">
+    </div>
+
+
+    <h1> Change the size of each pixel, lower size or upper size </h1>
+    <input id='xstart' type='number' placeholder="Trunk starting X position" value='400'>
+    <input id='ystart' type='number' placeholder="Trunk starting Y position" value='750'>
+    
+    <h1>Change angle of branches</h1>
+    <input id='angle' type='text' placeholder="Write an angle, or an expression for an angle" value='15'>
+
+
+    <h1>Change Amount Of Iterations</h1>
+    <input id='iterations' type='text' placeholder="Write amount of iterations" value='10'>
+
+
+    <h1>Thickness?</h1>
+
+
+    <h1>Change number of diverging branches?</h1>
+
+    <h1>Change canvas size?</h1>
+
+    <button id ='create_tree'> Create Fractal Tree </button><br>
+    <canvas id="canvas" width="800px" height="800px"> </canvas>
 
 </body>
 <script src="./library/functions.js"></script>
