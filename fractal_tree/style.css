@@ -1,7 +1,8 @@
 /* Write Style */
 
 body{
-    background-color: black;
+	display: flex;
+    background-color: #425F57;
 }
 
 #canvas{
@@ -13,6 +14,11 @@ body{
 	border-radius: 5px;
 }
 
-h1, p{
+h4, p{
 	color: white;
+}
+
+.paramater_container{
+	border: 3px solid #CFFF8D;
+	margin: 20px;
 }
