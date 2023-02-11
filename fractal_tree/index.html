@@ -8,39 +8,53 @@
     <link rel=stylesheet href=style.css>
 </head>
 <body>
+
+    <div id = "container_paramaters">
+        
+        <div id = "container_hue" class="paramater_container">
+            <h4> Write expressions for HSL (L is length of branch)</h4>
+            <textarea id='hue_expression' placeholder="Hue" cols="40" rows="5">L</textarea>
+            <textarea id='saturation_expression' placeholder="Saturation" cols="40" rows="5">75</textarea>
+            <textarea id='lightness_expression' placeholder="Lightness" cols="40" rows="5">50</textarea>
+        </div>
+
+
+        <div id ='container_length' class="paramater_container"> 
+            <h4> Change the starting length of the tree trunk, expression for change in size for next branch, and smallest branch size </h4>
+            <input id='length' type='number' placeholder="starting length" value='100'>
+            <input id='length_change_expression' type='text' placeholder="Expression for length change" value='L*0.8'>
+        </div>
     
-        <h1> Write expressions for Hue</h1>
-        <textarea id='hue_expression' placeholder="Hue" cols="40" rows="5">L*10</textarea>
     
-    <div id ='length_container'> 
-        <h1> Change the starting length of the tree trunk, expression for change in size for next branch, and smallest branch size </h1>
-        <input id='length' type='number' placeholder="starting length" value='100'>
-        <input id='length_change_expression' type='text' placeholder="Expression for length change" value='L*0.8'>
-        <input id='smallest_length' type="number" placeholder="Smallest branch size" value="10" min="1">
+        <div id = "container_position" class="paramater_container">
+            <h4> Change the starting positon, x and y </h4>
+            <input id='xstart' type='number' placeholder="Trunk starting X position" value='400'>
+            <input id='ystart' type='number' placeholder="Trunk starting Y position" value='750'>
+        </div>
+
+        <div id = "container_angle" class="paramater_container"> 
+            <h4>Change angle of branches</h4>
+            <input id='angle' type='text' placeholder="Write an angle, or an expression for an angle" value='15'>
+        </div>
+
+        <div id="container_iterations" class="paramater_container">
+            <h4>Change Amount Of Iterations</h4>
+            <input id='iterations' type='text' placeholder="Write amount of iterations" value='10'>
+        </div>
+    
+        <h4>Thickness?</h4>
+    
+        <h4>Change number of diverging branches?</h4>
+    
+        <h4>Change canvas size?</h4>
+    
+        <button id ='create_tree'> Create Fractal Tree </button><br>
+
     </div>
 
-
-    <h1> Change the size of each pixel, lower size or upper size </h1>
-    <input id='xstart' type='number' placeholder="Trunk starting X position" value='400'>
-    <input id='ystart' type='number' placeholder="Trunk starting Y position" value='750'>
-    
-    <h1>Change angle of branches</h1>
-    <input id='angle' type='text' placeholder="Write an angle, or an expression for an angle" value='15'>
-
-
-    <h1>Change Amount Of Iterations</h1>
-    <input id='iterations' type='text' placeholder="Write amount of iterations" value='10'>
-
-
-    <h1>Thickness?</h1>
-
-
-    <h1>Change number of diverging branches?</h1>
-
-    <h1>Change canvas size?</h1>
-
-    <button id ='create_tree'> Create Fractal Tree </button><br>
-    <canvas id="canvas" width="800px" height="800px"> </canvas>
+    <div id = "container_canvas">
+        <canvas id="canvas" width="800px" height="800px"> </canvas>
+    </div>
 
 </body>
 <script src="./library/functions.js"></script>
