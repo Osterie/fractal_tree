@@ -1,5 +1,9 @@
 const create_tree_button = document.getElementById('create_tree')
 
+const get_hue_expression = document.getElementById("hue_expression").value
+const get_saturation_expression = document.getElementById("saturation_expression").value
+const get_lightness_expression = document.getElementById("lightness_expression").value
+
 const get_xstart = parseInt(document.getElementById("xstart").value)
 const get_ystart = parseInt(document.getElementById("ystart").value)
 
@@ -12,6 +16,10 @@ const get_iterations = parseInt(document.getElementById("iterations").value)
 create_tree_button.addEventListener('click', () =>{
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const get_hue_expression = document.getElementById("hue_expression").value
+    const get_saturation_expression = document.getElementById("saturation_expression").value
+    const get_lightness_expression = document.getElementById("lightness_expression").value
     
     const get_xstart = parseInt(document.getElementById("xstart").value)
     const get_ystart = parseInt(document.getElementById("ystart").value)
@@ -23,7 +31,7 @@ create_tree_button.addEventListener('click', () =>{
     const get_iterations = parseInt(document.getElementById("iterations").value)
 
 
-    draw_fractal(get_xstart, get_ystart, get_start_length, get_length_change_expression, get_angle, get_iterations)
+    draw_fractal(get_hue_expression, get_saturation_expression, get_lightness_expression, get_xstart, get_ystart, get_start_length, get_length_change_expression, get_angle, get_iterations)
 })
 
 
@@ -32,25 +40,19 @@ const ctx = canvas.getContext("2d");
 
 window.onload = winInit;
 function winInit() {
-    draw_fractal(get_xstart, get_ystart, get_start_length, get_length_change_expression, get_angle, get_iterations)
+    draw_fractal(get_hue_expression, get_saturation_expression, get_lightness_expression, get_xstart, get_ystart, get_start_length, get_length_change_expression, get_angle, get_iterations)
 }
 
-
-
-
-//iterations?
-
-
-function draw_fractal(xstart, ystart, length, length_change_expression, angle, iterations){
+function draw_fractal(hue_expression, saturation_expression, lightness_expression, xstart, ystart, length, length_change_expression, angle, iterations){
 
     ctx.beginPath();
     ctx.save()
 
-    // var num = Math.round(4*length*length-80*length+500);
-    // ctx.strokeStyle = `hsl(${length*2+200}, ${50}%, ${50}%)`;
-    // ctx.strokeStyle = `hsl(${fits(255, iterations)}, ${75}%, ${50}%)`;
+    hue = Function( `return ${hue_expression.replace(/L/g, length)}` )();
+    saturation = Math.abs( ((100 + Function(`return ${saturation_expression.replace(/L/g, length)}`)()) % 200) - 100 );
+    lightness = Math.abs( ((100 + Function(`return ${lightness_expression.replace(/L/g, length)}`)()) % 200) - 100 );
 
-    ctx.strokeStyle = `rgb(${fits(255, length/50)}, ${fits(255, iterations)}, ${0})`;
+    ctx.strokeStyle = `hsl( ${hue}, ${saturation}%, ${lightness}%)`;
 
     
     ctx.lineWidth = length/10
@@ -68,8 +70,7 @@ function draw_fractal(xstart, ystart, length, length_change_expression, angle, i
         return;
     }
 
-    draw_fractal(0, -length, Function( `return ${length_change_expression.replace(/L/g, length)}` )(), length_change_expression, -angle, iterations-1)
-    draw_fractal(0, -length, Function( `return ${length_change_expression.replace(/L/g, length)}` )(), length_change_expression, +angle, iterations-1)
-
+    draw_fractal(hue_expression, saturation_expression, lightness_expression, 0, -length, Function( `return ${length_change_expression.replace(/L/g, length)}` )(), length_change_expression, -angle, iterations-1)
+    draw_fractal(hue_expression, saturation_expression, lightness_expression, 0, -length, Function( `return ${length_change_expression.replace(/L/g, length)}` )(), length_change_expression, +angle, iterations-1)
     ctx.restore();
 }
